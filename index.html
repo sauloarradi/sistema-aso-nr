@@ -278,6 +278,11 @@
             color: #e74c3c;
         }
 
+        .status.vence-5 {
+            background: #fff3cd;
+            color: #f77d37;
+        }
+
         .status.vence-15 {
             background: #fff3cd;
             color: #856404;
@@ -501,7 +506,273 @@
             justify-content: center;
         }
 
-        @media (max-width: 768px) {
+        /* ========== ESTILOS DO SISTEMA DE LOADING ========== */
+        #systemLoading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 80, 0.95);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading-overlay {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+            animation: slideInScale 0.5s ease-out;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #e3f2fd;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-content h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .loading-content p {
+            color: #7f8c8d;
+            margin-bottom: 25px;
+        }
+
+        .loading-progress {
+            width: 100%;
+            height: 6px;
+            background: #ecf0f1;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.5s ease;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        .mini-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e3f2fd;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-operation {
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        /* ========== ESTILOS PARA SISTEMA DE FILTROS ========== */
+        .filtros-container {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .filtros-container:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+
+        .filtros-container label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filtros-container input[type="text"] {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .filtros-container input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .filtros-container select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filtros-container select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .filtros-container select:hover {
+            border-color: #bdc3c7;
+        }
+
+        /* Contador de resultados */
+        .filtros-container div[style*="margin-top: 10px"] {
+            padding: 8px 12px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            font-weight: 500;
+        }
+
+        /* Animação para resultados vazios */
+        .tabela-vazia {
+            animation: fadeIn 0.5s ease-in;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Melhorar aparência das tabelas com filtros */
+        .table-container table tbody tr:hover {
+            background-color: #f8f9fa;
+            transform: translateX(2px);
+            transition: all 0.2s ease;
+        }
+
+        .table-container table tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        /* Destacar campos de busca */
+        .filtros-container input[type="text"][style*="border-left: 4px solid #3498db"] {
+            position: relative;
+        }
+
+        .filtros-container input[type="text"][style*="border-left: 4px solid #3498db"]:focus::before {
+            content: "🔍";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #3498db;
+        }
+
+        /* Badges para contadores */
+        .badge-counter {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        /* Estilo para quando não há resultados */
+        .sem-resultados {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            border-radius: 8px;
+            margin: 20px 0;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .sem-resultados::before {
+            content: "🔍";
+            font-size: 2em;
+            display: block;
+            margin-bottom: 10px;
+            opacity: 0.5;
+        }
+
+        /* Animações */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes slideInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: 200px 0;
+            }
+        }
+
+         @media (max-width: 768px) {
             .form-row {
                 flex-direction: column;
             }
@@ -539,9 +810,43 @@
             .notification-buttons .btn-small {
                 width: 100%;
             }
+
+            .filtros-container div[style*="display: flex"] {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .filtros-container div[style*="min-width"] {
+                min-width: unset;
+                width: 100%;
+            }
+            
+            .filtros-container div[style*="flex: 1"] {
+                min-width: unset;
+            }
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDuz9y3re32-KX_8GpS0ghIT3ZnX79yXyo",
+            authDomain: "sistema-aso-nr.firebaseapp.com",
+            projectId: "sistema-aso-nr",
+            storageBucket: "sistema-aso-nr.firebasestorage.app",
+            messagingSenderId: "129839049654",
+            appId: "1:129839049654:web:3767ec32456a3993572f17"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Disponibilizar globalmente
+        window.db = db;
+        window.firestore = { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, setDoc };
+    </script>
 </head>
 <body>
     <div class="container">
@@ -673,12 +978,23 @@
             <!-- Vencimentos -->
             <div id="vencimentos" class="tab-content">
                 <h2>Controle de Vencimentos</h2>
+
+                <!-- Campo de Busca -->
+                <div style="margin-bottom: 20px;">
+                    <div class="form-group">
+                        <label>🔍 Buscar Colaborador</label>
+                        <input type="text" id="buscaColaborador" placeholder="Digite o nome ou e-mail do colaborador..." onkeyup="filtrarVencimentos()" style="border-left: 4px solid #3498db;">
+                    </div>
+                </div>
+
+                <!-- Filtros -->
                 <div class="form-row" style="margin-bottom: 20px;">
                     <div class="form-group">
                         <label>Filtrar por Status</label>
-                        <select id="filtroStatus" onchange="filtrarVencimentos()"></select>
+                        <select id="filtroStatus" onchange="filtrarVencimentos()">
                             <option value="">Todos</option>
                             <option value="vencido">Vencidos</option>
+                            <option value="vence-5">Vence em 5 dias</option>
                             <option value="vence-15">Vence em 15 dias</option>
                             <option value="vence-30">Vence em 30 dias</option>
                             <option value="ok">Em dia</option>
@@ -691,6 +1007,14 @@
                             <option value="ASO">ASO</option>
                             <option value="NR">NR</option>
                             <option value="INTEGRAÇÃO">Integração</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ordenar por</label>
+                        <select id="ordenarPor" onchange="filtrarVencimentos()">
+                            <option value="vencimento">Data de Vencimento</option>
+                            <option value="nome">Nome do Colaborador</option>
+                            <option value="tipo">Tipo de Documento</option>
                         </select>
                     </div>
                 </div>
@@ -790,6 +1114,79 @@
                 </div>
 
                 <div class="config-section">
+                    <h4>📧 Personalizar Mensagens de E-mail e WhatsApp</h4>
+                    <p style="color: #6c757d; margin-bottom: 20px;">Personalize as mensagens enviadas para cada tipo de documento. Use as variáveis disponíveis para dados dinâmicos.</p>
+                    
+                    <!-- Variáveis Disponíveis -->
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #2196f3;">
+                        <strong>🔧 Variáveis Disponíveis:</strong><br>
+                        <code>{NOME}</code> - Nome do colaborador<br>
+                        <code>{DIAS}</code> - Dias para vencimento<br>
+                        <code>{DOCUMENTO}</code> - Tipo do documento<br>
+                        <code>{RESPONSAVEL}</code> - Nome do responsável<br>
+                        <code>{EMPRESA}</code> - Nome da empresa
+                    </div>
+
+                    <!-- Mensagem ASO -->
+                    <div class="form-group">
+                        <label>📄 Mensagem para ASO</label>
+                        <textarea id="mensagemASO" rows="4" placeholder="Digite a mensagem para ASO..." style="font-family: 'Courier New', monospace;">Prezado {NOME}, 
+
+Gostaria de informá-lo que o seu Atestado de Saúde Ocupacional (ASO) vencerá em {DIAS} dias. 
+
+É importante que você providencie a renovação do documento.
+
+Atenciosamente,
+{RESPONSAVEL}
+Segurança do Trabalho
+{EMPRESA}</textarea>
+                    </div>
+
+                    <!-- Mensagem NR -->
+                    <div class="form-group">
+                        <label>📋 Mensagem para NR</label>
+                        <textarea id="mensagemNR" rows="4" placeholder="Digite a mensagem para NR..." style="font-family: 'Courier New', monospace;">Prezado {NOME}, 
+
+Gostaria de informá-lo que a sua Norma Regulamentadora ({DOCUMENTO}) vencerá em {DIAS} dias. 
+
+É importante que você providencie a renovação do documento.
+
+Atenciosamente,
+{RESPONSAVEL}
+Segurança do Trabalho
+{EMPRESA}</textarea>
+                    </div>
+
+                    <!-- Mensagem Integração -->
+                    <div class="form-group">
+                        <label>🎯 Mensagem para Integração</label>
+                        <textarea id="mensagemIntegracao" rows="4" placeholder="Digite a mensagem para Integração..." style="font-family: 'Courier New', monospace;">Prezado {NOME}, 
+
+Gostaria de informá-lo que a sua Integração vencerá em {DIAS} dias. 
+
+É importante que você providencie a renovação do documento.
+
+Atenciosamente,
+{RESPONSAVEL}
+Segurança do Trabalho
+{EMPRESA}</textarea>
+                    </div>
+
+                    <!-- Preview -->
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <strong>👁️ Preview da Mensagem:</strong>
+                        <div id="previewMensagem" style="background: white; padding: 10px; border-radius: 5px; margin-top: 10px; border: 1px solid #dee2e6; white-space: pre-line; font-family: 'Courier New', monospace;">
+                            Selecione um tipo de mensagem para ver o preview...
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <button type="button" class="btn btn-small" onclick="previewMensagem('ASO')" style="margin-right: 5px;">Preview ASO</button>
+                            <button type="button" class="btn btn-small" onclick="previewMensagem('NR')" style="margin-right: 5px;">Preview NR</button>
+                            <button type="button" class="btn btn-small" onclick="previewMensagem('INTEGRAÇÃO')">Preview Integração</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-section">
                     <h4>Configurações de Notificações</h4>
                     <div class="form-row">
                         <div class="form-group">
@@ -874,8 +1271,8 @@
                         <input type="text" id="cpf" placeholder="000.000.000-00" required>
                     </div>
                     <div class="form-group">
-                        <label>RG <span class="required">*</span></label>
-                        <input type="text" id="rg" required>
+                        <label>RG</label>
+                        <input type="text" id="rg">
                     </div>
                 </div>
 
@@ -964,7 +1361,7 @@
 
                 <div style="text-align: right; margin-top: 20px;">
                     <button type="button" class="btn" onclick="closeModal('colaboradorModal')" style="margin-right: 10px; background: #6c757d;">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <button type="submit" class="btn btn-success" onclick="event.preventDefault(); salvarColaboradorComLoading();">Salvar</button>
                 </div>
             </form>
         </div>
@@ -1022,7 +1419,7 @@
 
                 <div style="text-align: right; margin-top: 20px;">
                     <button type="button" class="btn" onclick="closeModal('documentoModal')" style="margin-right: 10px; background: #6c757d;">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <button type="submit" class="btn btn-success" onclick="event.preventDefault(); salvarDocumentoComLoading();">Salvar</button>
                 </div>
             </form>
         </div>
@@ -1047,7 +1444,39 @@
             diasPrimeiroAviso: 15,
             diasSegundoAviso: 10,
             diasTerceiroAviso: 5,
-            envioAutomatico: 'ambos'
+            envioAutomatico: 'ambos',
+            mensagens: {
+                ASO: `Prezado {NOME}, 
+
+Gostaria de informá-lo que o seu Atestado de Saúde Ocupacional (ASO) vencerá em {DIAS} dias. 
+
+É importante que você providencie a renovação do documento.
+
+Atenciosamente,
+{RESPONSAVEL}
+Segurança do Trabalho
+{EMPRESA}`,
+                NR: `Prezado {NOME}, 
+
+Gostaria de informá-lo que a sua Norma Regulamentadora ({DOCUMENTO}) vencerá em {DIAS} dias. 
+
+É importante que você providencie a renovação do documento.
+
+Atenciosamente,
+{RESPONSAVEL}
+Segurança do Trabalho
+{EMPRESA}`,
+                INTEGRACAO: `Prezado {NOME}, 
+
+Gostaria de informá-lo que a sua Integração vencerá em {DIAS} dias. 
+
+É importante que você providencie a renovação do documento.
+
+Atenciosamente,
+{RESPONSAVEL}
+Segurança do Trabalho
+{EMPRESA}`
+            }
         };
         let emailsEnviados = [];
         let whatsappsEnviados = [];
@@ -1132,57 +1561,374 @@
             }, tipo === 'info' ? 3000 : 5000);
         }
 
-        // Carregar dados do localStorage
-        function carregarDados() {
-            const dadosColaboradores = localStorage.getItem('colaboradores');
-            const dadosDocumentos = localStorage.getItem('documentos');
-            const dadosConfiguracoes = localStorage.getItem('configuracoes');
-            const dadosEmails = localStorage.getItem('emailsEnviados');
-            const dadosWhatsapps = localStorage.getItem('whatsappsEnviados');
+        // Carregar dados do Firestore
+        async function carregarDados() {
+            try {
+                atualizarLoading('Conectando ao banco de dados...', 10);
+                
+                // Carregar colaboradores
+                atualizarLoading('Carregando colaboradores...', 25);
+                const colaboradoresSnapshot = await window.firestore.getDocs(window.firestore.collection(window.db, 'colaboradores'));
+                colaboradores = [];
+                colaboradoresSnapshot.forEach(doc => {
+                    colaboradores.push({ id: doc.id, ...doc.data() });
+                });
+                console.log(`✅ ${colaboradores.length} colaboradores carregados`);
 
-            if (dadosColaboradores) {
-                colaboradores = JSON.parse(dadosColaboradores);
-            }
-            if (dadosDocumentos) {
-                documentos = JSON.parse(dadosDocumentos);
-            }
-            if (dadosConfiguracoes) {
-                configuracoes = JSON.parse(dadosConfiguracoes);
-            }
-            if (dadosEmails) {
-                emailsEnviados = JSON.parse(dadosEmails);
-            }
-            if (dadosWhatsapps) {
-                whatsappsEnviados = JSON.parse(dadosWhatsapps);
+                // Carregar documentos
+                atualizarLoading('Carregando documentos...', 45);
+                const documentosSnapshot = await window.firestore.getDocs(window.firestore.collection(window.db, 'documentos'));
+                documentos = [];
+                documentosSnapshot.forEach(doc => {
+                    documentos.push({ id: doc.id, ...doc.data() });
+                });
+                console.log(`✅ ${documentos.length} documentos carregados`);
+
+                // Carregar configurações
+                atualizarLoading('Carregando configurações...', 65);
+                const configSnapshot = await window.firestore.getDocs(window.firestore.collection(window.db, 'configuracoes'));
+                configSnapshot.forEach(doc => {
+                    configuracoes = { ...configuracoes, ...doc.data() };
+                });
+                console.log('✅ Configurações carregadas');
+
+                // Carregar emails enviados
+                atualizarLoading('Carregando histórico de emails...', 80);
+                const emailsSnapshot = await window.firestore.getDocs(window.firestore.collection(window.db, 'emailsEnviados'));
+                emailsEnviados = [];
+                emailsSnapshot.forEach(doc => {
+                    emailsEnviados.push({ id: doc.id, ...doc.data() });
+                });
+                console.log(`✅ ${emailsEnviados.length} emails carregados`);
+
+                // Carregar whatsapps enviados
+                atualizarLoading('Carregando histórico de WhatsApp...', 90);
+                const whatsappsSnapshot = await window.firestore.getDocs(window.firestore.collection(window.db, 'whatsappsEnviados'));
+                whatsappsEnviados = [];
+                whatsappsSnapshot.forEach(doc => {
+                    whatsappsEnviados.push({ id: doc.id, ...doc.data() });
+                });
+                console.log(`✅ ${whatsappsEnviados.length} WhatsApps carregados`);
+                
+                atualizarLoading('Dados carregados com sucesso!', 95);
+                
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                throw error; // Repassar o erro para o login tratar
             }
         }
 
-        // Salvar dados no localStorage
-        function salvarDados() {
-            localStorage.setItem('colaboradores', JSON.stringify(colaboradores));
-            localStorage.setItem('documentos', JSON.stringify(documentos));
-            localStorage.setItem('configuracoes', JSON.stringify(configuracoes));
-            localStorage.setItem('emailsEnviados', JSON.stringify(emailsEnviados));
-            localStorage.setItem('whatsappsEnviados', JSON.stringify(whatsappsEnviados));
+        function mostrarLoadingOperacao(mensagem) {
+            const existingAlert = document.querySelector('.alert-info');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+            
+            const loadingAlert = document.createElement('div');
+            loadingAlert.className = 'alert alert-info loading-operation';
+            loadingAlert.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="mini-spinner"></div>
+                    <span>${mensagem}</span>
+                </div>
+            `;
+            loadingAlert.style.position = 'fixed';
+            loadingAlert.style.top = '20px';
+            loadingAlert.style.right = '20px';
+            loadingAlert.style.zIndex = '9999';
+            loadingAlert.style.minWidth = '250px';
+            
+            document.body.appendChild(loadingAlert);
+            
+            return loadingAlert;
+        }
+
+        function removerLoadingOperacao() {
+            const loadingOp = document.querySelector('.loading-operation');
+            if (loadingOp) {
+                loadingOp.remove();
+            }
+        }
+
+        // 7. ATUALIZAR FUNÇÕES DE SALVAMENTO COM LOADING
+        async function salvarColaboradorComLoading() {
+            const loading = mostrarLoadingOperacao('Salvando colaborador...');
+            
+            try {
+                await salvarColaborador();
+                removerLoadingOperacao();
+            } catch (error) {
+                removerLoadingOperacao();
+                throw error;
+            }
+        }
+
+        async function salvarDocumentoComLoading() {
+            const loading = mostrarLoadingOperacao('Salvando documento...');
+            
+            try {
+                await salvarDocumento();
+                removerLoadingOperacao();
+            } catch (error) {
+                removerLoadingOperacao();
+                throw error;
+            }
+        }
+
+        // 8. LOADING PARA ENVIO DE EMAILS
+        function enviarEmailComLoading(documentoId, automatico = false, diasEspecificos = null) {
+            if (!automatico) {
+                mostrarLoadingOperacao('Enviando e-mail...');
+            }
+            
+            return new Promise((resolve, reject) => {
+                const documento = documentos.find(d => d.id === documentoId);
+                const colaborador = colaboradores.find(c => c.id === documento.colaboradorId);
+                
+                if (!documento || !colaborador) {
+                    if (!automatico) removerLoadingOperacao();
+                    reject(new Error('Documento ou colaborador não encontrado'));
+                    return;
+                }
+                
+                const diasRestantes = diasEspecificos || calcularDiasRestantes(documento.dataVencimento);
+                const tipoDoc = documento.subtipo ? `${documento.tipo} (${documento.subtipo})` : documento.tipo;
+                
+                // Usar mensagem personalizada
+                let mensagemPersonalizada = '';
+                if (documento.tipo === 'ASO') {
+                    mensagemPersonalizada = configuracoes.mensagens?.ASO || 'Mensagem não configurada';
+                } else if (documento.tipo === 'NR') {
+                    mensagemPersonalizada = configuracoes.mensagens?.NR || 'Mensagem não configurada';
+                } else if (documento.tipo === 'INTEGRAÇÃO') {
+                    mensagemPersonalizada = configuracoes.mensagens?.INTEGRACAO || 'Mensagem não configurada';
+                }
+                
+                const tipoCompleto = documento.subtipo ? `${documento.tipo} (${documento.subtipo})` : documento.tipo;
+                const mensagemFinal = formatarMensagem(mensagemPersonalizada, colaborador.nome, diasRestantes, tipoCompleto);
+                
+                let mensagemTipo = '';
+                if (documento.tipo === 'ASO') {
+                    mensagemTipo = 'o seu Atestado de Saúde Ocupacional (ASO)';
+                } else if (documento.tipo === 'NR') {
+                    mensagemTipo = `a sua Norma Regulamentadora (${documento.subtipo})`;
+                } else if (documento.tipo === 'INTEGRAÇÃO') {
+                    mensagemTipo = 'a sua Integração';
+                }
+                
+                const templateParams = {
+                    to_email: colaborador.email,
+                    to_name: colaborador.nome,
+                    from_name: configuracoes.nomeResponsavel,
+                    empresa: configuracoes.nomeEmpresa,
+                    tipo_documento: tipoDoc,
+                    mensagem_tipo: mensagemTipo,
+                    mensagem_completa: mensagemFinal,
+                    dias_restantes: diasRestantes,
+                    cc_email: configuracoes.emailSuperior,
+                    reply_to: configuracoes.emailResponsavel
+                };
+                
+                // ENVIO REAL com EmailJS
+                emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
+                    .then(async function(response) {
+                        console.log('✅ E-mail enviado com sucesso!', response);
+                        
+                        // REGISTRAR ENVIO COM DATA CORRETA
+                        const dataHoje = new Date().toISOString().split('T')[0];
+                        const emailEnviado = {
+                            documentoId: documentoId,
+                            colaboradorId: documento.colaboradorId,
+                            colaboradorNome: colaborador.nome,
+                            colaboradorEmail: colaborador.email,
+                            tipoDocumento: tipoDoc,
+                            data: dataHoje, // GARANTIR FORMATO CORRETO
+                            dataCompleta: new Date().toISOString(),
+                            diasRestantes: diasRestantes,
+                            automatico: automatico,
+                            status: 'enviado',
+                            response: response.status
+                        };
+                        
+                        emailsEnviados.push(emailEnviado);
+                        
+                        // SALVAR NO FIRESTORE
+                        await window.firestore.addDoc(window.firestore.collection(window.db, 'emailsEnviados'), emailEnviado);
+                        console.log('📧 Email registrado no Firestore:', emailEnviado);
+                        
+                        if (!automatico) {
+                            removerLoadingOperacao();
+                            mostrarAlerta('✅ E-mail enviado e registrado com sucesso!', 'success');
+                            carregarVencimentos();
+                        }
+                        
+                        // ATUALIZAR DASHBOARD IMEDIATAMENTE
+                        atualizarDashboard();
+                        console.log('🔄 Dashboard atualizado após envio de email');
+                        
+                        resolve(response);
+                        
+                    })
+                    .catch(async function(error) {
+                        console.error('❌ Erro ao enviar e-mail:', error);
+                        
+                        // REGISTRAR ERRO
+                        const dataHoje = new Date().toISOString().split('T')[0];
+                        const emailErro = {
+                            documentoId: documentoId,
+                            colaboradorId: documento.colaboradorId,
+                            colaboradorNome: colaborador.nome,
+                            colaboradorEmail: colaborador.email,
+                            tipoDocumento: tipoDoc,
+                            data: dataHoje,
+                            dataCompleta: new Date().toISOString(),
+                            diasRestantes: diasRestantes,
+                            automatico: automatico,
+                            status: 'erro',
+                            error: error.text || error.message
+                        };
+                        
+                        emailsEnviados.push(emailErro);
+                        
+                        try {
+                            await window.firestore.addDoc(window.firestore.collection(window.db, 'emailsEnviados'), emailErro);
+                        } catch (saveError) {
+                            console.error('Erro ao salvar erro no Firestore:', saveError);
+                        }
+                        
+                        if (!automatico) {
+                            removerLoadingOperacao();
+                            mostrarAlerta('❌ Erro ao enviar e-mail: ' + (error.text || 'Erro desconhecido'), 'danger');
+                            carregarVencimentos();
+                        }
+                        
+                        reject(error);
+                    });
+            });
+        }
+
+        // Salvar dados no Firestore
+        async function salvarDados() {
+            try {
+                // Salvar configurações
+                await window.firestore.setDoc(window.firestore.doc(window.db, 'configuracoes', 'main'), configuracoes);
+                
+                console.log('Dados salvos no Firestore com sucesso!');
+            } catch (error) {
+                console.error('Erro ao salvar dados:', error);
+            }
+        }
+
+        // 1. FUNÇÃO PARA MOSTRAR LOADING
+        function mostrarLoading(mensagem = 'Carregando...') {
+            // Remover loading existente se houver
+            removerLoading();
+            
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'systemLoading';
+            loadingDiv.innerHTML = `
+                <div class="loading-overlay">
+                    <div class="loading-content">
+                        <div class="loading-spinner"></div>
+                        <h3>${mensagem}</h3>
+                        <p>Aguarde enquanto carregamos seus dados...</p>
+                        <div class="loading-progress">
+                            <div class="loading-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(loadingDiv);
+            
+            // Animar a barra de progresso
+            setTimeout(() => {
+                const progressBar = loadingDiv.querySelector('.loading-bar');
+                if (progressBar) {
+                    progressBar.style.width = '60%';
+                }
+            }, 500);
+            
+            setTimeout(() => {
+                const progressBar = loadingDiv.querySelector('.loading-bar');
+                if (progressBar) {
+                    progressBar.style.width = '90%';
+                }
+            }, 1000);
+        }
+
+        // 2. FUNÇÃO PARA REMOVER LOADING
+        function removerLoading() {
+            const existingLoading = document.getElementById('systemLoading');
+            if (existingLoading) {
+                existingLoading.style.opacity = '0';
+                setTimeout(() => {
+                    if (existingLoading.parentNode) {
+                        existingLoading.remove();
+                    }
+                }, 300);
+            }
+        }
+
+        // 3. FUNÇÃO PARA ATUALIZAR MENSAGEM DO LOADING
+        function atualizarLoading(mensagem, progresso = null) {
+            const loading = document.getElementById('systemLoading');
+            if (loading) {
+                const h3 = loading.querySelector('h3');
+                if (h3) {
+                    h3.textContent = mensagem;
+                }
+                
+                if (progresso !== null) {
+                    const progressBar = loading.querySelector('.loading-bar');
+                    if (progressBar) {
+                        progressBar.style.width = progresso + '%';
+                    }
+                }
+            }
         }
 
         // Sistema de login
-        function login() {
+        async function login() {
             const usuario = document.getElementById('loginUser').value;
             const senha = document.getElementById('loginPass').value;
             
             if (usuario === 'admin' && senha === '123456') {
+                // Mostrar loading imediatamente
+                mostrarLoading('Iniciando sistema...');
+                
                 document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('mainSystem').style.display = 'block';
                 document.querySelector('.logout-btn').style.display = 'block';
-                carregarDados();
-                setTimeout(() => {
+                
+                try {
+                    // Carregar dados com feedback
+                    atualizarLoading('Carregando colaboradores...', 20);
+                    await carregarDados();
+                    
+                    atualizarLoading('Configurando sistema...', 60);
+                    await new Promise(resolve => setTimeout(resolve, 300)); // Pequena pausa para suavizar
+                    
+                    atualizarLoading('Finalizando...', 90);
                     inicializarSistema();
-                }, 100);
+                    
+                    atualizarLoading('Concluído!', 100);
+                    
+                    // Remover loading após tudo carregar
+                    setTimeout(() => {
+                        removerLoading();
+                    }, 500);
+                    
+                } catch (error) {
+                    console.error('Erro durante o carregamento:', error);
+                    removerLoading();
+                    mostrarAlerta('Erro ao carregar o sistema. Tente novamente.', 'danger');
+                }
             } else {
                 document.getElementById('loginError').style.display = 'block';
             }
         }
+
 
         function logout() {
             document.getElementById('loginScreen').style.display = 'flex';
@@ -1222,51 +1968,115 @@
 
         // Máscaras de entrada
         function aplicarMascaras() {
+            // Máscara para telefone
             const contatoInput = document.getElementById('contato');
             if (contatoInput) {
-                contatoInput.addEventListener('input', function() {
-                    let value = this.value.replace(/\D/g, '');
-                    if (value.length >= 11) {
-                        value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
-                    } else if (value.length >= 6) {
-                        value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
-                    } else if (value.length >= 2) {
-                        value = value.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
-                    }
-                    this.value = value;
-                });
+                // Remove eventos anteriores
+                contatoInput.removeEventListener('input', mascaraTelefone);
+                contatoInput.addEventListener('input', mascaraTelefone);
             }
 
+            // Máscara para CPF
             const cpfInput = document.getElementById('cpf');
             if (cpfInput) {
-                cpfInput.addEventListener('input', function() {
-                    let value = this.value.replace(/\D/g, '');
-                    if (value.length >= 9) {
-                        value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/, '$1.$2.$3-$4');
-                    } else if (value.length >= 6) {
-                        value = value.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, '$1.$2.$3');
-                    } else if (value.length >= 3) {
-                        value = value.replace(/^(\d{3})(\d{0,3}).*/, '$1.$2');
-                    }
-                    this.value = value;
-                });
+                cpfInput.removeEventListener('input', mascaraCPF);
+                cpfInput.addEventListener('input', mascaraCPF);
             }
 
+            // Máscara para CEP + Busca automática
             const cepInput = document.getElementById('cep');
             if (cepInput) {
-                cepInput.addEventListener('input', function() {
-                    let value = this.value.replace(/\D/g, '');
-                    if (value.length >= 5) {
-                        value = value.replace(/^(\d{5})(\d{0,3}).*/, '$1-$2');
-                    }
-                    this.value = value;
-                });
+                cepInput.removeEventListener('input', mascaraCEP);
+                cepInput.removeEventListener('blur', buscaCEP);
+                
+                cepInput.addEventListener('input', mascaraCEP);
+                cepInput.addEventListener('blur', buscaCEP);
+            }
+        }
+
+        async function buscarCEP(cep) {
+            try {
+                const cepLimpo = cep.replace(/\D/g, '');
+                
+                if (cepLimpo.length !== 8) {
+                    return;
+                }
+                
+                console.log('🔍 Buscando CEP:', cepLimpo);
+                
+                const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+                const data = await response.json();
+                
+                if (data.erro) {
+                    mostrarAlerta('CEP não encontrado!', 'danger');
+                    return;
+                }
+                
+                // Preencher os campos automaticamente
+                document.getElementById('endereco').value = data.logradouro || '';
+                document.getElementById('bairro').value = data.bairro || '';
+                document.getElementById('cidade').value = data.localidade || '';
+                document.getElementById('uf').value = data.uf || '';
+                
+                console.log('✅ Endereço preenchido automaticamente:', data);
+                mostrarAlerta('Endereço preenchido automaticamente!', 'success');
+                
+            } catch (error) {
+                console.error('Erro ao buscar CEP:', error);
+                mostrarAlerta('Erro ao buscar CEP. Verifique sua conexão.', 'danger');
+            }
+        }
+
+        function mascaraTelefone(event) {
+            let value = event.target.value.replace(/\D/g, '');
+            if (value.length >= 11) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+            } else if (value.length >= 6) {
+                value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+            } else if (value.length >= 2) {
+                value = value.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
+            }
+            event.target.value = value;
+        }
+
+        function mascaraCPF(event) {
+            let value = event.target.value.replace(/\D/g, '');
+            if (value.length >= 9) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/, '$1.$2.$3-$4');
+            } else if (value.length >= 6) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, '$1.$2.$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/^(\d{3})(\d{0,3}).*/, '$1.$2');
+            }
+            event.target.value = value;
+        }
+
+        function mascaraCEP(event) {
+            let value = event.target.value.replace(/\D/g, '');
+            if (value.length >= 5) {
+                value = value.replace(/^(\d{5})(\d{0,3}).*/, '$1-$2');
+            }
+            event.target.value = value;
+        }
+
+        function buscaCEP(event) {
+            const cep = event.target.value;
+            if (cep && cep.replace(/\D/g, '').length === 8) {
+                buscarCEP(cep);
             }
         }
 
         // Modais
         function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
+            console.log('🚀 Abrindo modal:', modalId);
+            
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                console.error('❌ Modal não encontrado:', modalId);
+                return;
+            }
+            
+            modal.style.display = 'block';
             
             if (modalId === 'documentoModal') {
                 carregarColaboradoresSelect();
@@ -1297,21 +2107,35 @@
             }
             
             if (modalId === 'colaboradorModal') {
+                console.log('🔧 Configurando modal de colaborador...');
+                
                 setTimeout(() => {
                     const form = document.getElementById('colaboradorForm');
                     if (form) {
-                        const newForm = form.cloneNode(true);
-                        form.parentNode.replaceChild(newForm, form);
+                        console.log('📝 Reconfigurando formulário...');
                         
+                        // Recriar o formulário para remover eventos anteriores
+                        const newForm = form.cloneNode(true);
+                        form.parentNode.replaceChild(newForm, colaboradorForm);
+                        
+                        // Adicionar evento de submit
                         newForm.addEventListener('submit', function(e) {
                             e.preventDefault();
                             e.stopPropagation();
                             salvarColaborador();
                             return false;
                         });
+                        
+                        console.log('✅ Formulário reconfigurado');
                     }
+                    
+                    // Aplicar máscaras e eventos
                     aplicarMascaras();
-                }, 100);
+                    
+                    // Debug do UF (remover depois de testar)
+                    //debugUF();
+                    
+                }, 150);
             }
         }
 
@@ -1369,42 +2193,66 @@
             }
         }
 
-        function salvarColaborador() {
+        async function salvarColaborador() {
             try {
                 const nomeElement = document.getElementById('nomeColaborador');
                 const emailElement = document.getElementById('emailColaborador');
+                const setorElement = document.getElementById('setorFuncao');
+                const dataAdmissaoElement = document.getElementById('dataAdmissao');
+                const contatoElement = document.getElementById('contato');
                 
-                if (!nomeElement || !emailElement) {
+                if (!nomeElement || !emailElement || !setorElement || !dataAdmissaoElement || !contatoElement) {
                     alert('Erro: Elementos do formulário não encontrados.');
                     return;
                 }
                 
                 const id = document.getElementById('colaboradorId').value;
-                const nome = nomeElement.value;
-                const email = emailElement.value;
+                const nome = nomeElement.value.trim();
+                const email = emailElement.value.trim();
+                const setorFuncao = setorElement.value.trim();
+                const dataAdmissao = dataAdmissaoElement.value;
+                const contato = contatoElement.value.trim();
                 
-                if (!nome.trim()) {
+                // VALIDAÇÕES DOS CAMPOS OBRIGATÓRIOS
+                if (!nome) {
                     alert('Por favor, preencha o nome do colaborador.');
                     nomeElement.focus();
                     return;
                 }
                 
-                if (!email.trim()) {
+                if (!email) {
                     alert('Por favor, preencha o e-mail do colaborador.');
                     emailElement.focus();
                     return;
                 }
                 
+                if (!setorFuncao) {
+                    alert('Por favor, preencha o setor/função do colaborador.');
+                    setorElement.focus();
+                    return;
+                }
+                
+                if (!dataAdmissao) {
+                    alert('Por favor, preencha a data de admissão.');
+                    dataAdmissaoElement.focus();
+                    return;
+                }
+                
+                if (!contato) {
+                    alert('Por favor, preencha o contato do colaborador.');
+                    contatoElement.focus();
+                    return;
+                }
+                
                 const colaborador = {
-                    id: id || Date.now().toString(),
-                    nome: nome.trim(),
+                    nome: nome,
                     dataNascimento: document.getElementById('dataNascimento')?.value || '',
-                    email: email.trim(),
-                    setorFuncao: document.getElementById('setorFuncao')?.value || '',
-                    dataAdmissao: document.getElementById('dataAdmissao')?.value || '',
-                    contato: document.getElementById('contato')?.value || '',
+                    email: email,
+                    setorFuncao: setorFuncao,
+                    dataAdmissao: dataAdmissao,
+                    contato: contato,
                     cpf: document.getElementById('cpf')?.value || '',
-                    rg: document.getElementById('rg')?.value || '',
+                    rg: document.getElementById('rg')?.value || '', // RG NÃO É MAIS OBRIGATÓRIO
                     tituloEleitor: document.getElementById('tituloEleitor')?.value || '',
                     ativo: document.getElementById('ativo')?.value === 'true',
                     dataDemissao: document.getElementById('dataDemissao')?.value || '',
@@ -1418,13 +2266,70 @@
                     }
                 };
 
+                console.log('💾 Salvando colaborador:', colaborador);
+                console.log('🆔 ID do colaborador:', id);
+
                 if (id) {
+                    // EDIÇÃO: Atualizar colaborador existente
+                    console.log('✏️ Editando colaborador existente...');
+                    
+                    // Encontrar o colaborador no array local
                     const index = colaboradores.findIndex(c => c.id === id);
                     if (index !== -1) {
+                        // Manter o ID original
+                        colaborador.id = id;
                         colaboradores[index] = colaborador;
+                        console.log('✅ Colaborador atualizado no array local');
+                    } else {
+                        console.error('❌ Colaborador não encontrado no array local');
+                        alert('Erro: Colaborador não encontrado no sistema local.');
+                        return;
                     }
+
+                    // CORREÇÃO: Verificar se o colaborador existe no Firestore antes de atualizar
+                    try {
+                        // Tentar encontrar o colaborador no Firestore
+                        const colSnapshot = await window.firestore.getDocs(window.firestore.collection(window.db, 'colaboradores'));
+                        let firestoreDocId = null;
+                        
+                        colSnapshot.forEach(doc => {
+                            const data = doc.data();
+                            if (data.id === id || doc.id === id) {
+                                firestoreDocId = doc.id;
+                            }
+                        });
+                        
+                        if (firestoreDocId) {
+                            // Colaborador existe no Firestore, atualizar
+                            await window.firestore.updateDoc(window.firestore.doc(window.db, 'colaboradores', firestoreDocId), colaborador);
+                            console.log('✅ Colaborador atualizado no Firestore:', firestoreDocId);
+                        } else {
+                            // Colaborador não existe no Firestore, criar novo
+                            console.warn('⚠️ Colaborador não encontrado no Firestore, criando novo...');
+                            colaborador.id = id; // Manter o ID original
+                            await window.firestore.addDoc(window.firestore.collection(window.db, 'colaboradores'), colaborador);
+                            console.log('✅ Novo colaborador criado no Firestore');
+                        }
+                        
+                    } catch (firestoreError) {
+                        console.error('❌ Erro no Firestore:', firestoreError);
+                        
+                        // Se falhar, tentar criar um novo colaborador
+                        console.log('🔄 Tentando criar novo colaborador...');
+                        colaborador.id = id;
+                        await window.firestore.addDoc(window.firestore.collection(window.db, 'colaboradores'), colaborador);
+                        console.log('✅ Colaborador criado como novo no Firestore');
+                    }
+                    
                 } else {
+                    // NOVO COLABORADOR: Criar colaborador
+                    console.log('🆕 Criando novo colaborador...');
+                    
+                    colaborador.id = Date.now().toString();
                     colaboradores.push(colaborador);
+                    
+                    await window.firestore.addDoc(window.firestore.collection(window.db, 'colaboradores'), colaborador);
+                    console.log('✅ Novo colaborador criado');
                 }
 
                 salvarDados();
@@ -1433,60 +2338,96 @@
                 mostrarAlerta('Colaborador salvo com sucesso!', 'success');
                 
             } catch (error) {
-                console.error('Erro ao salvar colaborador:', error);
+                console.error('❌ Erro ao salvar colaborador:', error);
                 alert('Erro ao salvar colaborador: ' + error.message);
             }
         }
 
         function carregarColaboradores() {
-            const tbody = document.querySelector('#colaboradoresTable tbody');
-            tbody.innerHTML = '';
-
-            colaboradores.forEach(colaborador => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${colaborador.nome}</td>
-                    <td>${colaborador.email}</td>
-                    <td>${colaborador.setorFuncao}</td>
-                    <td>${formatarData(colaborador.dataAdmissao)}</td>
-                    <td><span class="status ${colaborador.ativo ? 'ok' : 'vencido'}">${colaborador.ativo ? 'Ativo' : 'Inativo'}</span></td>
-                    <td class="actions">
-                        <button class="btn btn-small" onclick="editarColaborador('${colaborador.id}')">Ver/Editar</button>
-                        <button class="btn btn-small btn-danger" onclick="excluirColaborador('${colaborador.id}')">Excluir</button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
+            console.log('👥 Carregando colaboradores...', colaboradores.length, 'colaboradores encontrados');
+            
+            // Se os controles não existem, adicionar
+            if (!document.getElementById('buscaColaboradorTab')) {
+                adicionarControlesColaboradores();
+            }
+            
+            // Usar a função de filtro para carregar tudo
+            filtrarColaboradores();
         }
 
         function editarColaborador(id) {
             const colaborador = colaboradores.find(c => c.id === id);
-            if (!colaborador) return;
-
-            document.getElementById('colaboradorId').value = colaborador.id;
-            document.getElementById('nomeColaborador').value = colaborador.nome;
-            document.getElementById('dataNascimento').value = colaborador.dataNascimento;
-            document.getElementById('emailColaborador').value = colaborador.email;
-            document.getElementById('setorFuncao').value = colaborador.setorFuncao;
-            document.getElementById('dataAdmissao').value = colaborador.dataAdmissao;
-            document.getElementById('contato').value = colaborador.contato;
-            document.getElementById('cpf').value = colaborador.cpf;
-            document.getElementById('rg').value = colaborador.rg;
-            document.getElementById('tituloEleitor').value = colaborador.tituloEleitor;
-            document.getElementById('ativo').value = colaborador.ativo.toString();
-            document.getElementById('dataDemissao').value = colaborador.dataDemissao || '';
-            
-            if (colaborador.endereco) {
-                document.getElementById('cep').value = colaborador.endereco.cep || '';
-                document.getElementById('endereco').value = colaborador.endereco.endereco || '';
-                document.getElementById('numero').value = colaborador.endereco.numero || '';
-                document.getElementById('bairro').value = colaborador.endereco.bairro || '';
-                document.getElementById('cidade').value = colaborador.endereco.cidade || '';
-                document.getElementById('uf').value = colaborador.endereco.uf || '';
+            if (!colaborador) {
+                console.error('Colaborador não encontrado:', id);
+                return;
             }
 
+            console.log('🔧 Editando colaborador:', colaborador);
+
+            // Primeiro, abrir o modal
             document.getElementById('colaboradorModalTitle').textContent = 'Editar Colaborador';
             openModal('colaboradorModal');
+            
+            // Aguardar o modal carregar completamente e então preencher os campos
+            setTimeout(() => {
+                try {
+                    // Preencher campos básicos
+                    document.getElementById('colaboradorId').value = colaborador.id || '';
+                    document.getElementById('nomeColaborador').value = colaborador.nome || '';
+                    document.getElementById('dataNascimento').value = colaborador.dataNascimento || '';
+                    document.getElementById('emailColaborador').value = colaborador.email || '';
+                    document.getElementById('setorFuncao').value = colaborador.setorFuncao || '';
+                    document.getElementById('dataAdmissao').value = colaborador.dataAdmissao || '';
+                    document.getElementById('contato').value = colaborador.contato || '';
+                    document.getElementById('cpf').value = colaborador.cpf || '';
+                    document.getElementById('rg').value = colaborador.rg || '';
+                    document.getElementById('tituloEleitor').value = colaborador.tituloEleitor || '';
+                    document.getElementById('ativo').value = colaborador.ativo ? 'true' : 'false';
+                    document.getElementById('dataDemissao').value = colaborador.dataDemissao || '';
+                    
+                    // Preencher endereço
+                    if (colaborador.endereco) {
+                        document.getElementById('cep').value = colaborador.endereco.cep || '';
+                        document.getElementById('endereco').value = colaborador.endereco.endereco || '';
+                        document.getElementById('numero').value = colaborador.endereco.numero || '';
+                        document.getElementById('bairro').value = colaborador.endereco.bairro || '';
+                        document.getElementById('cidade').value = colaborador.endereco.cidade || '';
+                        
+                        // CORREÇÃO ESPECÍFICA PARA UF
+                        const ufSelect = document.getElementById('uf');
+                        if (ufSelect) {
+                            console.log('📍 UF encontrado no select:', ufSelect);
+                            console.log('📍 UF a ser definido:', colaborador.endereco.uf);
+                            
+                            // Verificar se o valor existe nas opções
+                            let opcaoEncontrada = false;
+                            for (let i = 0; i < ufSelect.options.length; i++) {
+                                if (ufSelect.options[i].value === colaborador.endereco.uf) {
+                                    opcaoEncontrada = true;
+                                    break;
+                                }
+                            }
+                            
+                            if (opcaoEncontrada) {
+                                ufSelect.value = colaborador.endereco.uf;
+                                console.log('✅ UF definido com sucesso:', ufSelect.value);
+                            } else {
+                                console.warn('⚠️ UF não encontrado nas opções:', colaborador.endereco.uf);
+                            }
+                        } else {
+                            console.error('❌ Select UF não encontrado no DOM');
+                        }
+                    }
+                    
+                    // Aplicar máscaras após preencher tudo
+                    aplicarMascaras();
+                    
+                    console.log('✅ Todos os campos preenchidos com sucesso');
+                    
+                } catch (error) {
+                    console.error('❌ Erro ao preencher campos:', error);
+                }
+            }, 200); // Aumentar o tempo para garantir que o modal carregue
         }
 
         function excluirColaborador(id) {
@@ -1517,7 +2458,12 @@
             const subtipoGroup = document.getElementById('subtipoGroup');
             const subtipoSelect = document.getElementById('subtipoDocumento');
             
-            if (!subtipoGroup || !subtipoSelect) return;
+            console.log('🔄 Atualizando subtipo para tipo:', tipo);
+            
+            if (!subtipoGroup || !subtipoSelect) {
+                console.error('❌ Elementos de subtipo não encontrados');
+                return;
+            }
             
             if (tipo === 'NR') {
                 subtipoGroup.style.display = 'block';
@@ -1531,10 +2477,12 @@
                 
                 subtipoSelect.innerHTML = opcoes;
                 subtipoSelect.required = true;
+                console.log('✅ Subtipos de NR carregados');
             } else {
                 subtipoGroup.style.display = 'none';
                 subtipoSelect.required = false;
                 subtipoSelect.value = '';
+                console.log('✅ Subtipo ocultado para tipo:', tipo);
             }
             
             calcularVencimento();
@@ -1575,7 +2523,7 @@
             dataVencimentoElement.value = dataVencimentoFormatada;
         }
 
-        function salvarDocumento() {
+        async function salvarDocumento() {
             try {
                 const colaboradorElement = document.getElementById('colaboradorDocumento');
                 const tipoElement = document.getElementById('tipoDocumento');
@@ -1619,7 +2567,6 @@
                 }
                 
                 const documento = {
-                    id: id || Date.now().toString(),
                     colaboradorId: colaboradorId,
                     tipo: tipo,
                     subtipo: subtipo,
@@ -1628,13 +2575,70 @@
                     observacoes: document.getElementById('observacoes')?.value || ''
                 };
 
+                console.log('💾 Salvando documento:', documento);
+                console.log('🆔 ID do documento:', id);
+
                 if (id) {
+                    // EDIÇÃO: Atualizar documento existente
+                    console.log('✏️ Editando documento existente...');
+                    
+                    // Encontrar o documento no array local
                     const index = documentos.findIndex(d => d.id === id);
                     if (index !== -1) {
+                        // Manter o ID original
+                        documento.id = id;
                         documentos[index] = documento;
+                        console.log('✅ Documento atualizado no array local');
+                    } else {
+                        console.error('❌ Documento não encontrado no array local');
+                        alert('Erro: Documento não encontrado no sistema local.');
+                        return;
                     }
+
+                    // CORREÇÃO: Verificar se o documento existe no Firestore antes de atualizar
+                    try {
+                        // Tentar encontrar o documento no Firestore
+                        const docSnapshot = await window.firestore.getDocs(window.firestore.collection(window.db, 'documentos'));
+                        let firestoreDocId = null;
+                        
+                        docSnapshot.forEach(doc => {
+                            const data = doc.data();
+                            if (data.id === id || doc.id === id) {
+                                firestoreDocId = doc.id;
+                            }
+                        });
+                        
+                        if (firestoreDocId) {
+                            // Documento existe no Firestore, atualizar
+                            await window.firestore.updateDoc(window.firestore.doc(window.db, 'documentos', firestoreDocId), documento);
+                            console.log('✅ Documento atualizado no Firestore:', firestoreDocId);
+                        } else {
+                            // Documento não existe no Firestore, criar novo
+                            console.warn('⚠️ Documento não encontrado no Firestore, criando novo...');
+                            documento.id = id; // Manter o ID original
+                            await window.firestore.addDoc(window.firestore.collection(window.db, 'documentos'), documento);
+                            console.log('✅ Novo documento criado no Firestore');
+                        }
+                        
+                    } catch (firestoreError) {
+                        console.error('❌ Erro no Firestore:', firestoreError);
+                        
+                        // Se falhar, tentar criar um novo documento
+                        console.log('🔄 Tentando criar novo documento...');
+                        documento.id = id;
+                        await window.firestore.addDoc(window.firestore.collection(window.db, 'documentos'), documento);
+                        console.log('✅ Documento criado como novo no Firestore');
+                    }
+                    
                 } else {
+                    // NOVO DOCUMENTO: Criar documento
+                    console.log('🆕 Criando novo documento...');
+                    
+                    documento.id = Date.now().toString();
                     documentos.push(documento);
+                    
+                    await window.firestore.addDoc(window.firestore.collection(window.db, 'documentos'), documento);
+                    console.log('✅ Novo documento criado');
                 }
 
                 salvarDados();
@@ -1644,54 +2648,93 @@
                 atualizarDashboard();
                 
             } catch (error) {
-                console.error('Erro ao salvar documento:', error);
+                console.error('❌ Erro ao salvar documento:', error);
                 alert('Erro ao salvar documento: ' + error.message);
             }
         }
 
         function carregarDocumentos() {
-            const tbody = document.querySelector('#documentosTable tbody');
-            tbody.innerHTML = '';
-
-            documentos.forEach(documento => {
-                const colaborador = colaboradores.find(c => c.id === documento.colaboradorId);
-                const tipoCompleto = documento.subtipo ? `${documento.tipo} (${documento.subtipo})` : documento.tipo;
-                const status = getStatusDocumento(documento.dataVencimento);
-                
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${colaborador ? colaborador.nome : 'Colaborador não encontrado'}</td>
-                    <td>${tipoCompleto}</td>
-                    <td>${formatarData(documento.dataRealizacao)}</td>
-                    <td>${formatarData(documento.dataVencimento)}</td>
-                    <td><span class="status ${status.classe}">${status.texto}</span></td>
-                    <td class="actions">
-                        <button class="btn btn-small" onclick="editarDocumento('${documento.id}')">Editar</button>
-                        <button class="btn btn-small btn-danger" onclick="excluirDocumento('${documento.id}')">Excluir</button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
+            console.log('📋 Carregando documentos...', documentos.length, 'documentos encontrados');
+            
+            // Se os controles não existem, adicionar
+            if (!document.getElementById('buscaDocumentoTab')) {
+                adicionarControlesDocumentos();
+            }
+            
+            // Usar a função de filtro para carregar tudo
+            filtrarDocumentos();
         }
 
         function editarDocumento(id) {
             const documento = documentos.find(d => d.id === id);
-            if (!documento) return;
-
-            document.getElementById('documentoId').value = documento.id;
-            document.getElementById('colaboradorDocumento').value = documento.colaboradorId;
-            document.getElementById('tipoDocumento').value = documento.tipo;
-            document.getElementById('dataRealizacao').value = documento.dataRealizacao;
-            document.getElementById('observacoes').value = documento.observacoes || '';
-            
-            updateSubtipo();
-            if (documento.subtipo) {
-                document.getElementById('subtipoDocumento').value = documento.subtipo;
+            if (!documento) {
+                console.error('Documento não encontrado:', id);
+                return;
             }
-            
-            calcularVencimento();
+
+            console.log('🔧 Editando documento:', documento);
+
+            // Primeiro, abrir o modal
             document.getElementById('documentoModalTitle').textContent = 'Editar Documento';
             openModal('documentoModal');
+            
+            // Aguardar o modal carregar e então preencher os campos
+            setTimeout(() => {
+                try {
+                    // PREENCHER TODOS OS CAMPOS
+                    document.getElementById('documentoId').value = documento.id || '';
+                    
+                    // Carregar e selecionar o colaborador
+                    carregarColaboradoresSelect();
+                    setTimeout(() => {
+                        const colaboradorSelect = document.getElementById('colaboradorDocumento');
+                        if (colaboradorSelect && documento.colaboradorId) {
+                            colaboradorSelect.value = documento.colaboradorId;
+                            console.log('✅ Colaborador selecionado:', documento.colaboradorId);
+                        }
+                    }, 50);
+                    
+                    // Selecionar o tipo de documento
+                    const tipoSelect = document.getElementById('tipoDocumento');
+                    if (tipoSelect && documento.tipo) {
+                        tipoSelect.value = documento.tipo;
+                        console.log('✅ Tipo selecionado:', documento.tipo);
+                        
+                        // Atualizar subtipo se for NR
+                        updateSubtipo();
+                        
+                        setTimeout(() => {
+                            const subtipoSelect = document.getElementById('subtipoDocumento');
+                            if (subtipoSelect && documento.subtipo) {
+                                subtipoSelect.value = documento.subtipo;
+                                console.log('✅ Subtipo selecionado:', documento.subtipo);
+                            }
+                        }, 100);
+                    }
+                    
+                    // Preencher datas
+                    if (documento.dataRealizacao) {
+                        document.getElementById('dataRealizacao').value = documento.dataRealizacao;
+                        console.log('✅ Data realização preenchida:', documento.dataRealizacao);
+                    }
+                    
+                    if (documento.dataVencimento) {
+                        document.getElementById('dataVencimento').value = documento.dataVencimento;
+                        console.log('✅ Data vencimento preenchida:', documento.dataVencimento);
+                    }
+                    
+                    // Preencher observações
+                    if (documento.observacoes) {
+                        document.getElementById('observacoes').value = documento.observacoes;
+                        console.log('✅ Observações preenchidas');
+                    }
+                    
+                    console.log('✅ Todos os campos do documento preenchidos');
+                    
+                } catch (error) {
+                    console.error('❌ Erro ao preencher campos do documento:', error);
+                }
+            }, 200);
         }
 
         function excluirDocumento(id) {
@@ -1751,7 +2794,7 @@
                     <td>${item.ultimoContato ? formatarData(item.ultimoContato) : 'Nunca'}</td>
                     <td class="actions">
                         <div class="notification-buttons">
-                            <button class="btn btn-small btn-email" onclick="enviarEmail('${item.documento.id}')" title="Enviar E-mail">📧</button>
+                            <button class="btn btn-small btn-email" onclick="enviarEmailComLoading('${item.documento.id}')" title="Enviar E-mail">📧</button>
                             <button class="btn btn-small btn-whatsapp" onclick="enviarWhatsApp('${item.documento.id}')" title="Enviar WhatsApp">📱</button>
                         </div>
                     </td>
@@ -1761,7 +2804,104 @@
         }
 
         function filtrarVencimentos() {
-            carregarVencimentos();
+            const filtroStatus = document.getElementById('filtroStatus').value;
+            const filtroTipo = document.getElementById('filtroTipo').value;
+            
+            const tbody = document.querySelector('#vencimentosTable tbody');
+            tbody.innerHTML = '';
+
+            let vencimentosFiltrados = documentos.map(documento => {
+                const colaborador = colaboradores.find(c => c.id === documento.colaboradorId);
+                const diasRestantes = calcularDiasRestantes(documento.dataVencimento);
+                const status = getStatusDocumento(documento.dataVencimento);
+                const ultimoEmail = getUltimoEmail(documento.id);
+                const ultimoWhatsApp = getUltimoWhatsApp(documento.id);
+                
+                let ultimoContato = null;
+                if (ultimoEmail && ultimoWhatsApp) {
+                    ultimoContato = new Date(ultimoEmail) > new Date(ultimoWhatsApp) ? ultimoEmail : ultimoWhatsApp;
+                } else if (ultimoEmail) {
+                    ultimoContato = ultimoEmail;
+                } else if (ultimoWhatsApp) {
+                    ultimoContato = ultimoWhatsApp;
+                }
+                
+                return {
+                    documento,
+                    colaborador,
+                    diasRestantes,
+                    status,
+                    ultimoContato
+                };
+            }).filter(item => item.colaborador); // Só colaboradores válidos
+
+            // APLICAR FILTRO DE STATUS
+            if (filtroStatus) {
+                vencimentosFiltrados = vencimentosFiltrados.filter(item => {
+                    return item.status.classe === filtroStatus;
+                });
+            }
+
+            // APLICAR FILTRO DE TIPO
+            if (filtroTipo) {
+                vencimentosFiltrados = vencimentosFiltrados.filter(item => {
+                    return item.documento.tipo === filtroTipo;
+                });
+            }
+
+            // APLICAR BUSCA POR NOME
+            const buscaTexto = document.getElementById('buscaColaborador')?.value?.toLowerCase().trim();
+            if (buscaTexto) {
+                vencimentosFiltrados = vencimentosFiltrados.filter(item => {
+                    return item.colaborador.nome.toLowerCase().includes(buscaTexto) ||
+                        item.colaborador.email.toLowerCase().includes(buscaTexto);
+                });
+            }
+
+            // APLICAR ORDENAÇÃO
+            const ordenacao = document.getElementById('ordenarPor').value;
+            if (ordenacao === 'nome') {
+                vencimentosFiltrados.sort((a, b) => a.colaborador.nome.localeCompare(b.colaborador.nome));
+            } else if (ordenacao === 'tipo') {
+                vencimentosFiltrados.sort((a, b) => {
+                    const tipoA = a.documento.subtipo ? `${a.documento.tipo} (${a.documento.subtipo})` : a.documento.tipo;
+                    const tipoB = b.documento.subtipo ? `${b.documento.tipo} (${b.documento.subtipo})` : b.documento.tipo;
+                    return tipoA.localeCompare(tipoB);
+                });
+            } else {
+                // Padrão: ordenar por vencimento (dias restantes)
+                vencimentosFiltrados.sort((a, b) => a.diasRestantes - b.diasRestantes);
+            }
+
+            // RENDERIZAR resultados filtrados
+            vencimentosFiltrados.forEach(item => {
+                const tipoCompleto = item.documento.subtipo ? 
+                    `${item.documento.tipo} (${item.documento.subtipo})` : 
+                    item.documento.tipo;
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.colaborador.nome}</td>
+                    <td>${item.colaborador.email}</td>
+                    <td>${tipoCompleto}</td>
+                    <td>${formatarData(item.documento.dataVencimento)}</td>
+                    <td>${item.diasRestantes}</td>
+                    <td><span class="status ${item.status.classe}">${item.status.texto}</span></td>
+                    <td>${item.ultimoContato ? formatarData(item.ultimoContato) : 'Nunca'}</td>
+                    <td class="actions">
+                        <div class="notification-buttons">
+                            <button class="btn btn-small btn-email" onclick="enviarEmailComLoading('${item.documento.id}')" title="Enviar E-mail">📧</button>
+                            <button class="btn btn-small btn-whatsapp" onclick="enviarWhatsApp('${item.documento.id}')" title="Enviar WhatsApp">📱</button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Mostrar mensagem se não houver resultados
+            if (vencimentosFiltrados.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #6c757d; padding: 30px;">Nenhum documento encontrado com os filtros selecionados</td></tr>';
+            }
         }
 
         // Verificação automática de vencimentos
@@ -1808,7 +2948,7 @@
         }
 
         // ========== FUNÇÃO DE ENVIO DE EMAIL ATUALIZADA ==========
-        function enviarEmail(documentoId, automatico = false, diasEspecificos = null) {
+        async function enviarEmail(documentoId, automatico = false, diasEspecificos = null) {
             console.log('=== ENVIANDO EMAIL REAL ===');
             
             const documento = documentos.find(d => d.id === documentoId);
@@ -1822,7 +2962,20 @@
             const diasRestantes = diasEspecificos || calcularDiasRestantes(documento.dataVencimento);
             const tipoDoc = documento.subtipo ? `${documento.tipo} (${documento.subtipo})` : documento.tipo;
             
-            // Gerar mensagem baseada no tipo
+            // Usar mensagem personalizada
+            let mensagemPersonalizada = '';
+            if (documento.tipo === 'ASO') {
+                mensagemPersonalizada = configuracoes.mensagens?.ASO || 'Mensagem não configurada';
+            } else if (documento.tipo === 'NR') {
+                mensagemPersonalizada = configuracoes.mensagens?.NR || 'Mensagem não configurada';
+            } else if (documento.tipo === 'INTEGRAÇÃO') {
+                mensagemPersonalizada = configuracoes.mensagens?.INTEGRACAO || 'Mensagem não configurada';
+            }
+            
+            const tipoCompleto = documento.subtipo ? `${documento.tipo} (${documento.subtipo})` : documento.tipo;
+            const mensagemFinal = formatarMensagem(mensagemPersonalizada, colaborador.nome, diasRestantes, tipoCompleto);
+            
+            // Para compatibilidade com EmailJS, manter o campo mensagem_tipo
             let mensagemTipo = '';
             if (documento.tipo === 'ASO') {
                 mensagemTipo = 'o seu Atestado de Saúde Ocupacional (ASO)';
@@ -1840,6 +2993,7 @@
                 empresa: configuracoes.nomeEmpresa,
                 tipo_documento: tipoDoc,
                 mensagem_tipo: mensagemTipo,
+                mensagem_completa: mensagemFinal,
                 dias_restantes: diasRestantes,
                 cc_email: configuracoes.emailSuperior,
                 reply_to: configuracoes.emailResponsavel
@@ -1852,51 +3006,75 @@
             mostrarAlerta('Enviando e-mail...', 'info');
             
             // ENVIO REAL com EmailJS
-            emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
-                .then(function(response) {
-                    console.log('✅ E-mail enviado com sucesso!', response);
-                    
-                    // Registrar envio
-                    emailsEnviados.push({
-                        documentoId: documentoId,
-                        data: new Date().toISOString().split('T')[0],
-                        diasRestantes: diasRestantes,
-                        automatico: automatico,
-                        status: 'enviado',
-                        response: response.status
-                    });
-                    
-                    salvarDados();
-                    
-                    if (!automatico) {
-                        mostrarAlerta('✅ E-mail enviado com sucesso!', 'success');
-                        carregarVencimentos();
-                    }
-                    
-                })
-                .catch(function(error) {
-                    console.error('❌ Erro ao enviar e-mail:', error);
-                    
-                    // Registrar erro
-                    emailsEnviados.push({
-                        documentoId: documentoId,
-                        data: new Date().toISOString().split('T')[0],
-                        diasRestantes: diasRestantes,
-                        automatico: automatico,
-                        status: 'erro',
-                        error: error.text || error.message
-                    });
-                    
-                    salvarDados();
-                    
-                    if (!automatico) {
-                        mostrarAlerta('❌ Erro ao enviar e-mail: ' + (error.text || 'Erro desconhecido'), 'danger');
-                        carregarVencimentos();
-                    }
-                });
+            try {
+                const response = await emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams);
+                console.log('✅ E-mail enviado com sucesso!', response);
+                
+                // REGISTRAR ENVIO NO FIRESTORE
+                const emailEnviado = {
+                    documentoId: documentoId,
+                    colaboradorId: documento.colaboradorId,
+                    colaboradorNome: colaborador.nome,
+                    colaboradorEmail: colaborador.email,
+                    tipoDocumento: tipoDoc,
+                    data: new Date().toISOString().split('T')[0],
+                    dataCompleta: new Date().toISOString(),
+                    diasRestantes: diasRestantes,
+                    automatico: automatico,
+                    status: 'enviado',
+                    response: response.status
+                };
+                
+                // Adicionar ao array local
+                emailsEnviados.push(emailEnviado);
+                
+                // SALVAR NO FIRESTORE
+                await window.firestore.addDoc(window.firestore.collection(window.db, 'emailsEnviados'), emailEnviado);
+                console.log('📧 Email registrado no Firestore com sucesso!');
+                
+                if (!automatico) {
+                    mostrarAlerta('✅ E-mail enviado e registrado com sucesso!', 'success');
+                    carregarVencimentos();
+                    atualizarDashboard(); // Atualizar dashboard para mostrar nova notificação
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro ao enviar e-mail:', error);
+                
+                // REGISTRAR ERRO NO FIRESTORE
+                const emailErro = {
+                    documentoId: documentoId,
+                    colaboradorId: documento.colaboradorId,
+                    colaboradorNome: colaborador.nome,
+                    colaboradorEmail: colaborador.email,
+                    tipoDocumento: tipoDoc,
+                    data: new Date().toISOString().split('T')[0],
+                    dataCompleta: new Date().toISOString(),
+                    diasRestantes: diasRestantes,
+                    automatico: automatico,
+                    status: 'erro',
+                    error: error.text || error.message
+                };
+                
+                // Adicionar ao array local
+                emailsEnviados.push(emailErro);
+                
+                // SALVAR ERRO NO FIRESTORE
+                try {
+                    await window.firestore.addDoc(window.firestore.collection(window.db, 'emailsEnviados'), emailErro);
+                    console.log('❌ Erro de email registrado no Firestore');
+                } catch (saveError) {
+                    console.error('Erro ao salvar erro no Firestore:', saveError);
+                }
+                
+                if (!automatico) {
+                    mostrarAlerta('❌ Erro ao enviar e-mail: ' + (error.text || 'Erro desconhecido'), 'danger');
+                    carregarVencimentos();
+                }
+            }
         }
 
-        function enviarWhatsApp(documentoId, automatico = false, diasEspecificos = null) {
+        async function enviarWhatsApp(documentoId, automatico = false, diasEspecificos = null) {
             const documento = documentos.find(d => d.id === documentoId);
             const colaborador = colaboradores.find(c => c.id === documento.colaboradorId);
             
@@ -1909,14 +3087,18 @@
             
             const diasRestantes = diasEspecificos || calcularDiasRestantes(documento.dataVencimento);
             
-            let mensagem = '';
+            // Usar mensagem personalizada
+            let mensagemTemplate = '';
             if (documento.tipo === 'ASO') {
-                mensagem = `Prezado ${colaborador.nome}, Gostaria de informá-lo que o seu Atestado de Saúde Ocupacional (ASO) vencerá em ${diasRestantes} dias. É importante que você providencie a renovação do documento. Atenciosamente, ${configuracoes.nomeResponsavel} Segurança do Trabalho ${configuracoes.nomeEmpresa}`;
+                mensagemTemplate = configuracoes.mensagens?.ASO || 'Mensagem não configurada';
             } else if (documento.tipo === 'NR') {
-                mensagem = `Prezado ${colaborador.nome}, Gostaria de informá-lo que a sua Norma Regulamentadora (${documento.subtipo}) vencerá em ${diasRestantes} dias. É importante que você providencie a renovação do documento. Atenciosamente, ${configuracoes.nomeResponsavel} Segurança do Trabalho ${configuracoes.nomeEmpresa}`;
+                mensagemTemplate = configuracoes.mensagens?.NR || 'Mensagem não configurada';
             } else if (documento.tipo === 'INTEGRAÇÃO') {
-                mensagem = `Prezado ${colaborador.nome}, Gostaria de informá-lo que a sua Integração vencerá em ${diasRestantes} dias. É importante que você providencie a renovação do documento. Atenciosamente, ${configuracoes.nomeResponsavel} Segurança do Trabalho ${configuracoes.nomeEmpresa}`;
+                mensagemTemplate = configuracoes.mensagens?.INTEGRACAO || 'Mensagem não configurada';
             }
+            
+            const tipoCompleto = documento.subtipo ? `${documento.tipo} (${documento.subtipo})` : documento.tipo;
+            const mensagem = formatarMensagem(mensagemTemplate, colaborador.nome, diasRestantes, tipoCompleto);
             
             const telefone = limparTelefone(colaborador.contato);
             
@@ -1930,19 +3112,35 @@
             
             window.open(urlWhatsApp, '_blank');
             
-            whatsappsEnviados.push({
+            // REGISTRAR WHATSAPP NO FIRESTORE
+            const whatsappEnviado = {
                 documentoId: documentoId,
+                colaboradorId: documento.colaboradorId,
+                colaboradorNome: colaborador.nome,
+                colaboradorTelefone: colaborador.contato,
+                tipoDocumento: tipoCompleto,
                 data: new Date().toISOString().split('T')[0],
+                dataCompleta: new Date().toISOString(),
                 diasRestantes: diasRestantes,
                 automatico: automatico,
                 telefone: telefone
-            });
+            };
             
-            salvarDados();
+            // Adicionar ao array local
+            whatsappsEnviados.push(whatsappEnviado);
+            
+            // SALVAR NO FIRESTORE
+            try {
+                await window.firestore.addDoc(window.firestore.collection(window.db, 'whatsappsEnviados'), whatsappEnviado);
+                console.log('📱 WhatsApp registrado no Firestore com sucesso!');
+            } catch (error) {
+                console.error('Erro ao salvar WhatsApp no Firestore:', error);
+            }
             
             if (!automatico) {
                 mostrarAlerta('WhatsApp aberto! Envie a mensagem manualmente.', 'success');
                 carregarVencimentos();
+                atualizarDashboard(); // Atualizar dashboard para mostrar nova notificação
             }
         }
 
@@ -1967,27 +3165,58 @@
         }
 
         function getUltimoEmail(documentoId) {
-            const emails = emailsEnviados.filter(e => e.documentoId === documentoId);
+            const emails = emailsEnviados.filter(e => e.documentoId === documentoId && e.status === 'enviado');
             if (emails.length === 0) return null;
             
-            return emails.sort((a, b) => new Date(b.data) - new Date(a.data))[0].data;
+            return emails.sort((a, b) => new Date(b.dataCompleta || b.data) - new Date(a.dataCompleta || a.data))[0].data;
         }
 
         function getUltimoWhatsApp(documentoId) {
             const whatsapps = whatsappsEnviados.filter(w => w.documentoId === documentoId);
             if (whatsapps.length === 0) return null;
             
-            return whatsapps.sort((a, b) => new Date(b.data) - new Date(a.data))[0].data;
+            return whatsapps.sort((a, b) => new Date(b.dataCompleta || b.data) - new Date(a.dataCompleta || a.data))[0].data;
         }
 
         // Dashboard
         function atualizarDashboard() {
             const colaboradoresAtivos = colaboradores.filter(c => c.ativo).length;
+            
+            // CORREÇÃO: Obter data de hoje no formato correto
             const hoje = new Date();
-            const emailsHoje = emailsEnviados.filter(e => e.data === hoje.toISOString().split('T')[0]).length;
-            const whatsappsHoje = whatsappsEnviados.filter(w => w.data === hoje.toISOString().split('T')[0]).length;
+            const hojeString = hoje.toISOString().split('T')[0]; // Formato: YYYY-MM-DD
+            
+            console.log('📊 Dashboard - Data de hoje:', hojeString);
+            console.log('📊 Dashboard - Total emails cadastrados:', emailsEnviados.length);
+            console.log('📊 Dashboard - Total WhatsApps cadastrados:', whatsappsEnviados.length);
+            
+            // CONTAR EMAILS E WHATSAPPS ENVIADOS HOJE com debug
+            const emailsHoje = emailsEnviados.filter(e => {
+                const emailData = e.data;
+                const match = emailData === hojeString;
+                if (match) {
+                    console.log('📧 Email encontrado hoje:', e);
+                }
+                return match;
+            }).length;
+            
+            const whatsappsHoje = whatsappsEnviados.filter(w => {
+                const whatsappData = w.data;
+                const match = whatsappData === hojeString;
+                if (match) {
+                    console.log('📱 WhatsApp encontrado hoje:', w);
+                }
+                return match;
+            }).length;
+            
             const totalNotificacoesHoje = emailsHoje + whatsappsHoje;
             
+            console.log('📊 Dashboard RESULTADO:');
+            console.log('- Emails hoje:', emailsHoje);
+            console.log('- WhatsApps hoje:', whatsappsHoje);
+            console.log('- Total notificações hoje:', totalNotificacoesHoje);
+            
+            // CONTAR DOCUMENTOS VENCENDO E VENCIDOS
             let documentosVencendo = 0;
             let documentosVencidos = 0;
             
@@ -2000,42 +3229,93 @@
                 }
             });
             
-            document.getElementById('totalColaboradores').textContent = colaboradoresAtivos;
-            document.getElementById('documentosVencendo').textContent = documentosVencendo;
-            document.getElementById('documentosVencidos').textContent = documentosVencidos;
-            document.getElementById('emailsEnviados').textContent = totalNotificacoesHoje;
+            // ATUALIZAR ELEMENTOS DO DASHBOARD
+            const totalColaboradoresElement = document.getElementById('totalColaboradores');
+            const documentosVencendoElement = document.getElementById('documentosVencendo');
+            const documentosVencidosElement = document.getElementById('documentosVencidos');
+            const emailsEnviadosElement = document.getElementById('emailsEnviados');
             
+            if (totalColaboradoresElement) totalColaboradoresElement.textContent = colaboradoresAtivos;
+            if (documentosVencendoElement) documentosVencendoElement.textContent = documentosVencendo;
+            if (documentosVencidosElement) documentosVencidosElement.textContent = documentosVencidos;
+            if (emailsEnviadosElement) {
+                emailsEnviadosElement.textContent = totalNotificacoesHoje;
+                console.log('✅ Dashboard atualizado - Notificações hoje:', totalNotificacoesHoje);
+            }
+            
+            // CARREGAR PRÓXIMOS VENCIMENTOS
             const tbody = document.querySelector('#proximosVencimentos tbody');
-            tbody.innerHTML = '';
-            
-            const proximosVencimentos = documentos
-                .map(documento => {
-                    const colaborador = colaboradores.find(c => c.id === documento.colaboradorId);
-                    const diasRestantes = calcularDiasRestantes(documento.dataVencimento);
-                    const status = getStatusDocumento(documento.dataVencimento);
-                    
-                    return { documento, colaborador, diasRestantes, status };
-                })
-                .filter(item => item.colaborador && item.diasRestantes <= 30)
-                .sort((a, b) => a.diasRestantes - b.diasRestantes)
-                .slice(0, 10);
-            
-            proximosVencimentos.forEach(item => {
-                const tipoCompleto = item.documento.subtipo ? 
-                    `${item.documento.tipo} (${item.documento.subtipo})` : 
-                    item.documento.tipo;
+            if (tbody) {
+                tbody.innerHTML = '';
                 
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${item.colaborador.nome}</td>
-                    <td>${tipoCompleto}</td>
-                    <td>${formatarData(item.documento.dataRealizacao)}</td>
-                    <td>${formatarData(item.documento.dataVencimento)}</td>
-                    <td>${item.diasRestantes}</td>
-                    <td><span class="status ${item.status.classe}">${item.status.texto}</span></td>
-                `;
-                tbody.appendChild(tr);
-            });
+                const proximosVencimentos = documentos
+                    .map(documento => {
+                        const colaborador = colaboradores.find(c => c.id === documento.colaboradorId);
+                        const diasRestantes = calcularDiasRestantes(documento.dataVencimento);
+                        const status = getStatusDocumento(documento.dataVencimento);
+                        
+                        return { documento, colaborador, diasRestantes, status };
+                    })
+                    .filter(item => item.colaborador && item.diasRestantes <= 30)
+                    .sort((a, b) => a.diasRestantes - b.diasRestantes)
+                    .slice(0, 10);
+                
+                proximosVencimentos.forEach(item => {
+                    const tipoCompleto = item.documento.subtipo ? 
+                        `${item.documento.tipo} (${item.documento.subtipo})` : 
+                        item.documento.tipo;
+                    
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${item.colaborador.nome}</td>
+                        <td>${tipoCompleto}</td>
+                        <td>${formatarData(item.documento.dataRealizacao)}</td>
+                        <td>${formatarData(item.documento.dataVencimento)}</td>
+                        <td>${item.diasRestantes}</td>
+                        <td><span class="status ${item.status.classe}">${item.status.texto}</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        // FUNÇÃO PARA FORÇAR ATUALIZAÇÃO DO DASHBOARD (para teste)
+        function forcarAtualizacaoDashboard() {
+            console.log('🔄 Forçando atualização do dashboard...');
+            console.log('📊 Dados atuais:');
+            console.log('- Emails enviados:', emailsEnviados);
+            console.log('- WhatsApps enviados:', whatsappsEnviados);
+            
+            atualizarDashboard();
+        }
+
+        // FUNÇÃO PARA TESTAR NOTIFICAÇÃO (para debug)
+        function testarNotificacao() {
+            const hoje = new Date().toISOString().split('T')[0];
+            
+            // Adicionar um email de teste
+            const emailTeste = {
+                documentoId: 'teste-' + Date.now(),
+                colaboradorId: 'teste',
+                colaboradorNome: 'Teste Dashboard',
+                colaboradorEmail: 'teste@teste.com',
+                tipoDocumento: 'ASO',
+                data: hoje,
+                dataCompleta: new Date().toISOString(),
+                diasRestantes: 5,
+                automatico: false,
+                status: 'enviado',
+                response: 200
+            };
+            
+            emailsEnviados.push(emailTeste);
+            
+            console.log('🧪 Email de teste adicionado:', emailTeste);
+            console.log('📊 Total emails agora:', emailsEnviados.length);
+            
+            atualizarDashboard();
+            
+            mostrarAlerta('Email de teste adicionado! Verifique o dashboard.', 'success');
         }
 
         // Configurações
@@ -2051,6 +3331,11 @@
             document.getElementById('diasSegundoAviso').value = configuracoes.diasSegundoAviso || 10;
             document.getElementById('diasTerceiroAviso').value = configuracoes.diasTerceiroAviso || 5;
             document.getElementById('envioAutomatico').value = configuracoes.envioAutomatico || 'ambos';
+            
+            // Carregar mensagens personalizadas
+            document.getElementById('mensagemASO').value = configuracoes.mensagens?.ASO || '';
+            document.getElementById('mensagemNR').value = configuracoes.mensagens?.NR || '';
+            document.getElementById('mensagemIntegracao').value = configuracoes.mensagens?.INTEGRACAO || '';
             
             carregarNRs();
         }
@@ -2167,8 +3452,324 @@
             configuracoes.diasTerceiroAviso = parseInt(document.getElementById('diasTerceiroAviso').value);
             configuracoes.envioAutomatico = document.getElementById('envioAutomatico').value;
             
+            // Salvar mensagens personalizadas
+            configuracoes.mensagens = {
+                ASO: document.getElementById('mensagemASO').value,
+                NR: document.getElementById('mensagemNR').value,
+                INTEGRACAO: document.getElementById('mensagemIntegracao').value
+            };
+            
             salvarDados();
             mostrarAlerta('Configurações salvas com sucesso!', 'success');
+        }
+
+        // Funções para mensagens personalizadas
+        function previewMensagem(tipo) {
+            const mensagem = document.getElementById(`mensagem${tipo === 'INTEGRAÇÃO' ? 'Integracao' : tipo}`).value;
+            const mensagemFormatada = formatarMensagem(mensagem, 'João Silva', 15, tipo === 'NR' ? 'NR-35' : tipo);
+            document.getElementById('previewMensagem').textContent = mensagemFormatada;
+        }
+
+        function formatarMensagem(template, nome, dias, documento) {
+            return template
+                .replace(/{NOME}/g, nome)
+                .replace(/{DIAS}/g, dias)
+                .replace(/{DOCUMENTO}/g, documento)
+                .replace(/{RESPONSAVEL}/g, configuracoes.nomeResponsavel)
+                .replace(/{EMPRESA}/g, configuracoes.nomeEmpresa);
+        }
+
+        // ========== SISTEMA DE ORDENAÇÃO ==========
+
+        // 1. ADICIONAR CONTROLES DE ORDENAÇÃO NO HTML DA ABA COLABORADORES
+        function adicionarControlesColaboradores() {
+            const colaboradoresDiv = document.getElementById('colaboradores');
+            const headerDiv = colaboradoresDiv.querySelector('div[style*="display: flex"]');
+            
+            // Criar container de filtros
+            const filtrosDiv = document.createElement('div');
+            filtrosDiv.className = 'filtros-container';
+            filtrosDiv.style.cssText = 'margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; border: 1px solid #dee2e6;';
+            
+            filtrosDiv.innerHTML = `
+                <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #2c3e50;">🔍 Buscar Colaborador</label>
+                        <input type="text" id="buscaColaboradorTab" placeholder="Digite o nome, e-mail ou setor..." onkeyup="filtrarColaboradores()" style="width: 100%; padding: 8px 12px; border: 2px solid #e9ecef; border-radius: 6px; border-left: 4px solid #3498db;">
+                    </div>
+                    <div style="min-width: 150px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #2c3e50;">📊 Ordenar por</label>
+                        <select id="ordenarColaboradores" onchange="filtrarColaboradores()" style="width: 100%; padding: 8px 12px; border: 2px solid #e9ecef; border-radius: 6px;">
+                            <option value="nome">Nome (A-Z)</option>
+                            <option value="nome-desc">Nome (Z-A)</option>
+                            <option value="email">E-mail (A-Z)</option>
+                            <option value="email-desc">E-mail (Z-A)</option>
+                            <option value="setor">Setor/Função</option>
+                            <option value="admissao">Data de Admissão</option>
+                            <option value="admissao-desc">Admissão (Mais Recente)</option>
+                            <option value="status">Status (Ativo/Inativo)</option>
+                        </select>
+                    </div>
+                    <div style="min-width: 120px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #2c3e50;">🎯 Status</label>
+                        <select id="filtroStatusColaborador" onchange="filtrarColaboradores()" style="width: 100%; padding: 8px 12px; border: 2px solid #e9ecef; border-radius: 6px;">
+                            <option value="">Todos</option>
+                            <option value="ativo">Apenas Ativos</option>
+                            <option value="inativo">Apenas Inativos</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; font-size: 14px; color: #6c757d;">
+                    <span id="totalColaboradoresFiltro">0 colaboradores encontrados</span>
+                </div>
+            `;
+            
+            // Inserir filtros após o header
+            headerDiv.parentNode.insertBefore(filtrosDiv, headerDiv.nextSibling);
+        }
+
+        // 2. ADICIONAR CONTROLES DE ORDENAÇÃO NO HTML DA ABA DOCUMENTOS
+        function adicionarControlesDocumentos() {
+            const documentosDiv = document.getElementById('documentos');
+            const headerDiv = documentosDiv.querySelector('div[style*="display: flex"]');
+            
+            // Criar container de filtros
+            const filtrosDiv = document.createElement('div');
+            filtrosDiv.className = 'filtros-container';
+            filtrosDiv.style.cssText = 'margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; border: 1px solid #dee2e6;';
+            
+            filtrosDiv.innerHTML = `
+                <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #2c3e50;">🔍 Buscar Documento</label>
+                        <input type="text" id="buscaDocumentoTab" placeholder="Digite o nome do colaborador..." onkeyup="filtrarDocumentos()" style="width: 100%; padding: 8px 12px; border: 2px solid #e9ecef; border-radius: 6px; border-left: 4px solid #3498db;">
+                    </div>
+                    <div style="min-width: 150px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #2c3e50;">📋 Tipo</label>
+                        <select id="filtroTipoDocumento" onchange="filtrarDocumentos()" style="width: 100%; padding: 8px 12px; border: 2px solid #e9ecef; border-radius: 6px;">
+                            <option value="">Todos</option>
+                            <option value="ASO">ASO</option>
+                            <option value="NR">NR</option>
+                            <option value="INTEGRAÇÃO">Integração</option>
+                        </select>
+                    </div>
+                    <div style="min-width: 150px;">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #2c3e50;">📊 Ordenar por</label>
+                        <select id="ordenarDocumentos" onchange="filtrarDocumentos()" style="width: 100%; padding: 8px 12px; border: 2px solid #e9ecef; border-radius: 6px;">
+                            <option value="colaborador">Colaborador (A-Z)</option>
+                            <option value="colaborador-desc">Colaborador (Z-A)</option>
+                            <option value="tipo">Tipo de Documento</option>
+                            <option value="realizacao">Data Realização</option>
+                            <option value="realizacao-desc">Realização (Mais Recente)</option>
+                            <option value="vencimento">Data Vencimento</option>
+                            <option value="vencimento-desc">Vencimento (Mais Recente)</option>
+                            <option value="status">Status</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top: 10px; font-size: 14px; color: #6c757d;">
+                    <span id="totalDocumentosFiltro">0 documentos encontrados</span>
+                </div>
+            `;
+            
+            // Inserir filtros após o header
+            headerDiv.parentNode.insertBefore(filtrosDiv, headerDiv.nextSibling);
+        }
+
+        // 3. FUNÇÃO DE FILTRO E ORDENAÇÃO PARA COLABORADORES
+        function filtrarColaboradores() {
+            const busca = document.getElementById('buscaColaboradorTab')?.value?.toLowerCase().trim() || '';
+            const ordenacao = document.getElementById('ordenarColaboradores')?.value || 'nome';
+            const filtroStatus = document.getElementById('filtroStatusColaborador')?.value || '';
+            
+            console.log('🔍 Filtrando colaboradores:', { busca, ordenacao, filtroStatus });
+            
+            // Filtrar colaboradores
+            let colaboradoresFiltrados = colaboradores.filter(colaborador => {
+                // Filtro de busca
+                const matchBusca = !busca || 
+                    colaborador.nome.toLowerCase().includes(busca) ||
+                    colaborador.email.toLowerCase().includes(busca) ||
+                    colaborador.setorFuncao.toLowerCase().includes(busca);
+                
+                // Filtro de status
+                const matchStatus = !filtroStatus || 
+                    (filtroStatus === 'ativo' && colaborador.ativo) ||
+                    (filtroStatus === 'inativo' && !colaborador.ativo);
+                
+                return matchBusca && matchStatus;
+            });
+            
+            // Ordenar colaboradores
+            colaboradoresFiltrados.sort((a, b) => {
+                switch (ordenacao) {
+                    case 'nome':
+                        return a.nome.localeCompare(b.nome);
+                    case 'nome-desc':
+                        return b.nome.localeCompare(a.nome);
+                    case 'email':
+                        return a.email.localeCompare(b.email);
+                    case 'email-desc':
+                        return b.email.localeCompare(a.email);
+                    case 'setor':
+                        return a.setorFuncao.localeCompare(b.setorFuncao);
+                    case 'admissao':
+                        return new Date(a.dataAdmissao) - new Date(b.dataAdmissao);
+                    case 'admissao-desc':
+                        return new Date(b.dataAdmissao) - new Date(a.dataAdmissao);
+                    case 'status':
+                        if (a.ativo === b.ativo) return a.nome.localeCompare(b.nome);
+                        return b.ativo ? 1 : -1; // Ativos primeiro
+                    default:
+                        return a.nome.localeCompare(b.nome);
+                }
+            });
+            
+            // Renderizar tabela
+            renderizarTabelaColaboradores(colaboradoresFiltrados);
+            
+            // Atualizar contador
+            const totalSpan = document.getElementById('totalColaboradoresFiltro');
+            if (totalSpan) {
+                totalSpan.textContent = `${colaboradoresFiltrados.length} colaboradores encontrados`;
+            }
+        }
+
+        // 4. FUNÇÃO PARA RENDERIZAR TABELA DE COLABORADORES
+        function renderizarTabelaColaboradores(colaboradoresFiltrados) {
+            const tbody = document.querySelector('#colaboradoresTable tbody');
+            tbody.innerHTML = '';
+
+            if (colaboradoresFiltrados.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #6c757d; padding: 30px;">Nenhum colaborador encontrado com os filtros selecionados</td></tr>';
+                return;
+            }
+
+            colaboradoresFiltrados.forEach(colaborador => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${colaborador.nome}</td>
+                    <td>${colaborador.email}</td>
+                    <td>${colaborador.setorFuncao}</td>
+                    <td>${formatarData(colaborador.dataAdmissao)}</td>
+                    <td><span class="status ${colaborador.ativo ? 'ok' : 'vencido'}">${colaborador.ativo ? 'Ativo' : 'Inativo'}</span></td>
+                    <td class="actions">
+                        <button class="btn btn-small" onclick="editarColaborador('${colaborador.id}')">Ver/Editar</button>
+                        <button class="btn btn-small btn-danger" onclick="excluirColaborador('${colaborador.id}')">Excluir</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 5. FUNÇÃO DE FILTRO E ORDENAÇÃO PARA DOCUMENTOS
+        function filtrarDocumentos() {
+            const busca = document.getElementById('buscaDocumentoTab')?.value?.toLowerCase().trim() || '';
+            const tipoFiltro = document.getElementById('filtroTipoDocumento')?.value || '';
+            const ordenacao = document.getElementById('ordenarDocumentos')?.value || 'colaborador';
+            
+            console.log('🔍 Filtrando documentos:', { busca, tipoFiltro, ordenacao });
+            
+            // Filtrar documentos
+            let documentosFiltrados = documentos.filter(documento => {
+                const colaborador = colaboradores.find(c => c.id === documento.colaboradorId);
+                
+                // Filtro de busca (por nome do colaborador)
+                const matchBusca = !busca || 
+                    (colaborador && colaborador.nome.toLowerCase().includes(busca));
+                
+                // Filtro de tipo
+                const matchTipo = !tipoFiltro || documento.tipo === tipoFiltro;
+                
+                return matchBusca && matchTipo && colaborador; // Só documentos com colaborador válido
+            });
+            
+            // Ordenar documentos
+            documentosFiltrados.sort((a, b) => {
+                const colaboradorA = colaboradores.find(c => c.id === a.colaboradorId);
+                const colaboradorB = colaboradores.find(c => c.id === b.colaboradorId);
+                
+                switch (ordenacao) {
+                    case 'colaborador':
+                        return colaboradorA.nome.localeCompare(colaboradorB.nome);
+                    case 'colaborador-desc':
+                        return colaboradorB.nome.localeCompare(colaboradorA.nome);
+                    case 'tipo':
+                        const tipoA = a.subtipo ? `${a.tipo} (${a.subtipo})` : a.tipo;
+                        const tipoB = b.subtipo ? `${b.tipo} (${b.subtipo})` : b.tipo;
+                        return tipoA.localeCompare(tipoB);
+                    case 'realizacao':
+                        return new Date(a.dataRealizacao) - new Date(b.dataRealizacao);
+                    case 'realizacao-desc':
+                        return new Date(b.dataRealizacao) - new Date(a.dataRealizacao);
+                    case 'vencimento':
+                        return new Date(a.dataVencimento) - new Date(b.dataVencimento);
+                    case 'vencimento-desc':
+                        return new Date(b.dataVencimento) - new Date(a.dataVencimento);
+                    case 'status':
+                        const statusA = getStatusDocumento(a.dataVencimento);
+                        const statusB = getStatusDocumento(b.dataVencimento);
+                        const ordemStatus = { 'vencido': 0, 'vence-5': 1, 'vence-15': 2, 'vence-30': 3, 'ok': 4 };
+                        return ordemStatus[statusA.classe] - ordemStatus[statusB.classe];
+                    default:
+                        return colaboradorA.nome.localeCompare(colaboradorB.nome);
+                }
+            });
+            
+            // Renderizar tabela
+            renderizarTabelaDocumentos(documentosFiltrados);
+            
+            // Atualizar contador
+            const totalSpan = document.getElementById('totalDocumentosFiltro');
+            if (totalSpan) {
+                totalSpan.textContent = `${documentosFiltrados.length} documentos encontrados`;
+            }
+        }
+
+        // 6. FUNÇÃO PARA RENDERIZAR TABELA DE DOCUMENTOS
+        function renderizarTabelaDocumentos(documentosFiltrados) {
+            const tbody = document.querySelector('#documentosTable tbody');
+            tbody.innerHTML = '';
+
+            if (documentosFiltrados.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #6c757d; padding: 30px;">Nenhum documento encontrado com os filtros selecionados</td></tr>';
+                return;
+            }
+
+            documentosFiltrados.forEach(documento => {
+                const colaborador = colaboradores.find(c => c.id === documento.colaboradorId);
+                const tipoCompleto = documento.subtipo ? `${documento.tipo} (${documento.subtipo})` : documento.tipo;
+                const status = getStatusDocumento(documento.dataVencimento);
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${colaborador ? colaborador.nome : 'Colaborador não encontrado'}</td>
+                    <td>${tipoCompleto}</td>
+                    <td>${formatarData(documento.dataRealizacao)}</td>
+                    <td>${formatarData(documento.dataVencimento)}</td>
+                    <td><span class="status ${status.classe}">${status.texto}</span></td>
+                    <td class="actions">
+                        <button class="btn btn-small" onclick="editarDocumento('${documento.id}')">Editar</button>
+                        <button class="btn btn-small btn-danger" onclick="excluirDocumento('${documento.id}')">Excluir</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 8. FUNÇÃO PARA LIMPAR FILTROS
+        function limparFiltrosColaboradores() {
+            document.getElementById('buscaColaboradorTab').value = '';
+            document.getElementById('ordenarColaboradores').value = 'nome';
+            document.getElementById('filtroStatusColaborador').value = '';
+            filtrarColaboradores();
+        }
+
+        function limparFiltrosDocumentos() {
+            document.getElementById('buscaDocumentoTab').value = '';
+            document.getElementById('filtroTipoDocumento').value = '';
+            document.getElementById('ordenarDocumentos').value = 'colaborador';
+            filtrarDocumentos();
         }
 
         // Funções auxiliares
@@ -2188,10 +3789,10 @@
         function getStatusDocumento(dataVencimento) {
             const dias = calcularDiasRestantes(dataVencimento);
             
-            if (dias < 0) {
+            if (dias < 1) {
                 return { classe: 'vencido', texto: 'Vencido' };
             } else if (dias <= 5) {
-                return { classe: 'vencido', texto: 'Vence em ' + dias + ' dias' };
+                return { classe: 'vence-5', texto: 'Vence em ' + dias + ' dias' };
             } else if (dias <= 15) {
                 return { classe: 'vence-15', texto: 'Vence em ' + dias + ' dias' };
             } else if (dias <= 30) {
